@@ -78,11 +78,13 @@
         <div class="popup">
             <div class="popup__window">
                 <h2 class="popup__window_title">Редактировать профиль</h2>
-                <form class="popup__window_form" action="">
-                    <input type="text">
-                    <input type="text">
-                    <input type="button" value="Сохранить">
+                <form class="popup__window_forms" action="">
+                    <input class="popup__window_form popup__window_form_author" type="text" placeholder="Имя профиля">
+                    <input class="popup__window_form popup__window_form_about-author" type="text"
+                        placeholder="Информация">
+                    <input class="popup__window_submit" type="button" value="Сохранить">
                 </form>
+                <img class="popup__window_close" src="./images/close.svg" alt="close">
             </div>
 
         </div>
