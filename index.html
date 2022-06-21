@@ -13,16 +13,19 @@
 <body>
     <div class="page">
         <header class="header">
-            <img src="./images/logo.svg" alt="logo">
+            <img class="header__logo" src="./images/logo.svg" alt="logo">
         </header>
         <section class="profile">
             <img class="profile__avatar" src="./images/avatar.jpg" alt="avatar">
             <div class="profile__info">
-                <p class="profile__info_author">Sergey Schepankevich</p>
+                <div class="profile__info_author">
+                    <p class="profile__info_author-text">Sergey Schepankevich</p>
+                    <img class="edit-button" src="./images/edit-button.svg" alt="edit-button">
+                </div>
                 <p class="profile__info_about-author">Programmist</p>
             </div>
-            <img src="./images/edit-button.svg" alt="edit-button">
-            <img src="./images/add-button.svg" alt="add-button">
+
+            <img class="add-button" src="./images/add-button.svg" alt="add-button">
         </section>
         <section class="elements">
             <div class="element">
@@ -68,7 +71,9 @@
                 </div>
             </div>
         </section>
-        <footer class="footer"></footer>
+        <footer class="footer">
+            <p>&copy Mesto Russia</p>
+        </footer>
 
     </div>
 </body>
