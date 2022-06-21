@@ -102,3 +102,40 @@
   transition: 0.5s;
   opacity: 0.7;
 }
+
+.popup {
+  /* display: none; */
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup__window {
+  width: 30%;
+  height: 30%;
+  margin: auto;
+  background-color: white;
+  color: black;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 30px;
+  display: grid;
+}
+
+.popup__window_title {
+}
+
+.popup__window_form {
+  display: grid;
+  gap: 20px;
+}
