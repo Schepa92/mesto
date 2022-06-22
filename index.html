@@ -75,18 +75,30 @@
             <p>&copy Mesto Russia</p>
         </footer>
 
-        <div class="popup">
-            <div class="popup__window">
-                <h2 class="popup__window_title">Редактировать профиль</h2>
-                <form class="popup__window_forms" action="">
-                    <input class="popup__window_form popup__window_form_author" type="text" placeholder="Имя профиля">
-                    <input class="popup__window_form popup__window_form_about-author" type="text"
+        <div class="profile-popup">
+            <div class="profile-popup__window">
+                <h2 class="profile-popup__window_title">Редактировать профиль</h2>
+                <form class="profile-popup__window_forms" action="">
+                    <input class="profile-popup__window_form profile-popup__window_form_author" type="text"
+                        placeholder="Имя">
+                    <input class="profile-popup__window_form profile-popup__window_form_about-author" type="text"
                         placeholder="Информация">
-                    <input class="popup__window_submit" type="button" value="Сохранить">
+                    <input class="profile-popup__window_submit" type="button" value="Сохранить">
                 </form>
-                <img class="popup__window_close" src="./images/close.svg" alt="close">
+                <img class="profile-popup__window_close" src="./images/close.svg" alt="close">
             </div>
+        </div>
 
+        <div class="add-popup">
+            <div class="add-popup__window">
+                <h2 class="add-popup__window_title">Добавить публикацию</h2>
+                <form class="add-popup__window_forms" action="">
+                    <input class="add-popup__window_form-file" type="file" required>
+                    <input class="add-popup__window_form-subtitle" type="text" placeholder="Введите описание">
+                    <input class="add-popup__window_submit" type="button" value="Добавить">
+                </form>
+                <img class="add-popup__window_close" src="./images/close.svg" alt="close">
+            </div>
         </div>
 
     </div>
