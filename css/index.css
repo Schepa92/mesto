@@ -103,6 +103,10 @@
   width: 100%;
 }
 
+.element__footer_like-on {
+  transform: scale(1.2);
+}
+
 .footer {
   width: 100%;
   box-sizing: border-box;

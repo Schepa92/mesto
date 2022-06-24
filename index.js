@@ -105,13 +105,16 @@ submitAddButton.addEventListener('click', addElement);
 
 /////////////////////////
 
-// let likeButton = document.querySelectorAll('.element__footer_like');
-// let i = 0;
-// function likeOk() {
-//   while (i <= likeButton.length) {
-//     likeButton[i].setAttribute('src', './images/like-on.svg');
-//     i++;
-//   }
-// }
-
-// likeButton[i].addEventListener('click', likeOk);
+const elements = document.querySelector('.elements'); // выбираем блок elements, в котором находятся все кнопки лайк
+elements.addEventListener('click', (evt) => {
+  // создаем событие на клик
+  if (evt.target.classList.contains('element__footer_like')) {
+    // target возвращает нам сам div элемента. Если свойства этого элемента содержат в себе класс element__footer_like
+    const index = [
+      // то мы создаем переменную и присваиваем ей значение: массив включает в себя список всех кнопок блока, расширяем его с помощью ..., находим инжекс элемента по содержимому
+      ...elements.querySelectorAll('.element__footer_like'),
+    ].indexOf(evt.target);
+    const count = elements.querySelectorAll('.element__footer_like')[index]; // обращаемся к определенной кнопке по ее индексу
+    count.classList.toggle('element__footer_like-on'); // если класса нет, то добавить, если есть - убрать
+  }
+});
