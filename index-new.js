@@ -158,6 +158,7 @@ function createItemElement(index) {
   initialCardsElement[index] = itemElement;
   return index;
 }
+rewrewrwerewr;
 
 function addElementStartPage() {
   for (let i = 0; i <= initialCards.length; i++) {
