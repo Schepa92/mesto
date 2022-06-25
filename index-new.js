@@ -31,6 +31,7 @@ const profileButton = document.querySelector('.edit-button');
 const profilePopup = document.querySelector('.profile-popup');
 const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
+const picPopup = document.querySelector('.pic-popup');
 
 function showProfilePopup() {
   profilePopup.classList.add('popup_show');
@@ -42,6 +43,10 @@ function showAddPopup() {
   addPopup.classList.add('popup_show');
 }
 
+function showPicPopup() {
+  picPopup.classList.add('popup_show');
+}
+
 profileButton.addEventListener('click', showProfilePopup);
 addButton.addEventListener('click', showAddPopup);
 
@@ -50,6 +55,7 @@ addButton.addEventListener('click', showAddPopup);
 function closePopup() {
   profilePopup.classList.remove('popup_show');
   addPopup.classList.remove('popup_show');
+  picPopup.classList.remove('popup_show');
 }
 
 function closeThisPopup(evt) {
@@ -206,5 +212,20 @@ elementsBlock.addEventListener('click', (evt) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+elementsBlock.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__image')) {
+    const index = [
+      ...elementsBlock.querySelectorAll('.element__image'),
+    ].indexOf(evt.target);
+    const countFull = elementsBlock.querySelectorAll('.element__image')[index];
+
+    let imageSource = countFull.getAttribute('src');
+    picPopup
+      .querySelector('.pic-popup__image')
+      .setAttribute('src', imageSource);
+  }
+  showPicPopup();
+});
 
 addElementStartPage();

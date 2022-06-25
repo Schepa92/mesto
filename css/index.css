@@ -266,12 +266,6 @@
   transform: scale(0.8);
 }
 
-.popup_show {
-  /* display: block; */
-  visibility: visible;
-  opacity: 1;
-}
-
 @media screen and (max-width: 720px) {
   .page {
     min-width: 320px;
@@ -303,4 +297,34 @@
     margin: auto 20px;
     width: auto;
   }
+}
+
+.pic-popup {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.pic-popup__image {
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  max-width: 90vw;
+  object-fit: cover;
+  max-height: 90%;
+}
+
+.popup_show {
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
 }
