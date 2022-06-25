@@ -177,7 +177,7 @@ function addElementStartPage() {
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-function deleteItemElement(index) {}
+function deleteItemElement() {}
 
 elementsBlock.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('element__trash-icon')) {
