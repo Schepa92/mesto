@@ -33,13 +33,13 @@ const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
 
 function showProfilePopup() {
-  profilePopup.classList.add('profile-popup_show');
+  profilePopup.classList.add('popup_show');
   authorTitleInput.value = authorTitle.textContent;
   authorSubtitleInput.value = authorSubtitle.textContent;
 }
 
 function showAddPopup() {
-  addPopup.classList.add('add-popup_show');
+  addPopup.classList.add('popup_show');
 }
 
 profileButton.addEventListener('click', showProfilePopup);
@@ -47,21 +47,22 @@ addButton.addEventListener('click', showAddPopup);
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-const closeButtonProfilePopup = profilePopup.querySelector(
-  '.profile-popup__window_close'
-);
-const closeButtonAddPopup = addPopup.querySelector('.add-popup__window_close');
-
-function closeProfilePopup() {
-  profilePopup.classList.remove('profile-popup_show');
+function closePopup() {
+  profilePopup.classList.remove('popup_show');
+  addPopup.classList.remove('popup_show');
 }
 
-function closeAddPopup() {
-  addPopup.classList.remove('add-popup_show');
+function closeThisPopup(evt) {
+  if (evt.target.classList.contains('popup__close-icon')) {
+    const index = [...document.querySelectorAll('.popup__close-icon')].indexOf(
+      evt.target
+    );
+    const countClose = document.querySelectorAll('.popup__close-icon')[index];
+    closePopup();
+  }
 }
 
-closeButtonProfilePopup.addEventListener('click', closeProfilePopup);
-closeButtonAddPopup.addEventListener('click', closeAddPopup);
+document.addEventListener('click', closeThisPopup);
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +86,7 @@ function setAuthorInfo() {
   ) {
     authorTitle.textContent = authorTitleInput.value;
     authorSubtitle.textContent = authorSubtitleInput.value;
-    closeProfilePopup();
+    closePopup();
     authorTitleInput.value = '';
     authorSubtitleInput.value = '';
   } else {
@@ -113,11 +114,15 @@ function addItemElement() {
     elementLinkInput.value.length !== 0
   ) {
     initialCards.unshift(addedArrayElement);
-
+    initialCardsElement.unshift('');
+    console.log(initialCardsElement);
+    console.log(initialCards);
     elementTitleInput.value = '';
     elementLinkInput.value = '';
-    closeAddPopup();
+    closePopup();
     createItemElement(0);
+
+    console.log(initialCardsElement);
   } else {
     alert('Введите информацию!');
   }
@@ -141,6 +146,10 @@ function createItemElement(index) {
   elementImage.classList.add('element__image');
   elementImage.setAttribute('src', `${linkImage}`);
 
+  const elementTrash = document.createElement('img');
+  elementTrash.classList.add('element__trash-icon');
+  elementTrash.setAttribute('src', './images/trash.svg');
+
   const elementFooter = document.createElement('div');
   elementFooter.classList.add('element__footer');
 
@@ -153,10 +162,9 @@ function createItemElement(index) {
   elementFooterLike.classList.add('element__footer_like');
 
   elementFooter.append(elementFooterTitle, elementFooterLike);
-  itemElement.append(elementImage, elementFooter);
+  itemElement.append(elementImage, elementTrash, elementFooter);
   elementsBlock.prepend(itemElement);
   initialCardsElement[index] = itemElement;
-  return index;
 }
 
 function addElementStartPage() {
@@ -169,8 +177,23 @@ function addElementStartPage() {
 
 /////////////////////////////////////////////////////////////////////////////////////
 
+function deleteItemElement(index) {}
+
 elementsBlock.addEventListener('click', (evt) => {
-  console.log('click!');
+  if (evt.target.classList.contains('element__trash-icon')) {
+    const index = [
+      ...elementsBlock.querySelectorAll('.element__trash-icon'),
+    ].indexOf(evt.target);
+    console.log(index);
+    console.log(initialCardsElement);
+    initialCardsElement[index].remove();
+    initialCardsElement.splice(index, 1);
+  }
+});
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+elementsBlock.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('element__footer_like')) {
     const index = [
       ...elementsBlock.querySelectorAll('.element__footer_like'),
@@ -183,18 +206,5 @@ elementsBlock.addEventListener('click', (evt) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
-
-// elementsBlock.addEventListener('click', (evt) => {
-//   console.log('click!');
-//   if (evt.target.classList.contains('element')) {
-//     const index = [...elementsBlock.querySelectorAll('.element')].indexOf(
-//       evt.target
-//     );
-//     const countLike = elementsBlock.querySelectorAll('.element__footer_like')[
-//       index
-//     ];
-//     countLike.classList.toggle('element__footer_like-on');
-//   }
-// });
 
 addElementStartPage();
