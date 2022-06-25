@@ -3,32 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./css/vendor/normalize.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet"
+          href="./css/vendor/normalize.css">
+    <link rel="stylesheet"
+          href="./css/index.css">
 </head>
 
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="logo">
+            <img class="header__logo"
+                 src="./images/logo.svg"
+                 alt="logo">
         </header>
         <section class="profile">
-            <img class="profile__avatar" src="./images/avatar.jpg" alt="avatar">
+            <img class="profile__avatar"
+                 src="./images/avatar.jpg"
+                 alt="avatar">
             <div class="profile__info">
                 <div class="profile__info_author">
                     <p class="profile__info_author-text">Sergey Schepankevich</p>
-                    <img class="edit-button" src="./images/edit-button.svg" alt="edit-button">
+                    <img class="edit-button"
+                         src="./images/edit-button.svg"
+                         alt="edit-button">
                 </div>
-                <p class="profile__info_about-author">Programmist</p>
+                <p class="profile__info_about-author">Hello!</p>
             </div>
 
-            <img class="add-button" src="./images/add-button.svg" alt="add-button">
+            <img class="add-button"
+                 src="./images/add-button.svg"
+                 alt="add-button">
         </section>
         <section class="elements">
-            <div class="element">
+            <!-- <div class="element">
                 <img src="./images/test.png" alt="">
                 <div class="element__footer">
                     <h2 class="element__footer_title">Карачаево-Черкесская республика</h2>
@@ -69,41 +81,69 @@
                     <h2 class="element__footer_title">Карачаево-Черкесская республика</h2>
                     <img class="element__footer_like" src="./images/like.svg" alt="like">
                 </div>
-            </div>
+            </div> -->
         </section>
         <footer class="footer">
             <p>&copy Mesto Russia</p>
         </footer>
 
-        <div class="profile-popup">
+        <div class="profile-popup opacity-background">
             <div class="profile-popup__window">
                 <h2 class="profile-popup__window_title">Редактировать профиль</h2>
-                <form class="profile-popup__window_forms" action="" onsubmit="return false">
-                    <input class="profile-popup__window_form profile-popup__window_form_author" type="text"
-                        placeholder="Имя">
-                    <input class="profile-popup__window_form profile-popup__window_form_about-author" type="text"
-                        placeholder="Информация">
-                    <input class="profile-popup__window_submit" type="submit" value="Сохранить">
+                <form class="profile-popup__window_forms"
+                      action=""
+                      onsubmit="return false">
+                    <input class="profile-popup__window_form profile-popup__window_form_author"
+                           type="text"
+                           placeholder="Имя">
+                    <input class="profile-popup__window_form profile-popup__window_form_about-author"
+                           type="text"
+                           placeholder="Информация">
+                    <input class="profile-popup__window_submit"
+                           type="submit"
+                           value="Сохранить">
                 </form>
-                <img class="profile-popup__window_close" src="./images/close.svg" alt="close">
+                <img class="profile-popup__window_close"
+                     src="./images/close.svg"
+                     alt="close">
             </div>
+
         </div>
 
-        <div class="add-popup">
+        <div class="add-popup opacity-background">
             <div class="add-popup__window">
                 <h2 class="add-popup__window_title">Новое место</h2>
-                <form class="add-popup__window_forms" action="" onsubmit="return false">
-                    <input class="add-popup__window_form-file" type="text" placeholder="Название">
-                    <input class="add-popup__window_form-subtitle" type="text" placeholder="Ссылка на картинку">
-                    <input class="add-popup__window_submit" type="submit" value="Сохранить">
+                <form class="add-popup__window_forms"
+                      action=""
+                      onsubmit="return false">
+                    <input class="add-popup__window_form-title"
+                           type="text"
+                           placeholder="Название">
+                    <input class="add-popup__window_form-link"
+                           type="text"
+                           placeholder="Ссылка на картинку">
+                    <input class="add-popup__window_submit"
+                           type="submit"
+                           value="Сохранить">
                 </form>
-                <img class="add-popup__window_close" src="./images/close.svg" alt="close">
+                <img class="add-popup__window_close"
+                     src="./images/close.svg"
+                     alt="close">
             </div>
+
+        </div>
+
+        <div class="pic-popup opacity-background">
+            <img src=""
+                 alt="">
+            <!-- <img class="profile-popup__window_close" -->
+            src="./images/close.svg"
+            alt="close">
         </div>
 
     </div>
 
-    <script src="./index.js"></script>
+    <script src="./index-new.js"></script>
 </body>
 
 </html>

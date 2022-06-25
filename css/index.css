@@ -77,11 +77,13 @@
   overflow: hidden;
   background-color: #f2f2f2;
   color: #000000;
-  /* grid-auto-rows: 500px; */
+  grid-template-rows: 300px 1fr;
 }
 
-.element > img {
+.element__image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .element__footer {
@@ -125,12 +127,18 @@
 }
 
 .profile-popup {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+}
+
+.opacity-background {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -180,17 +188,21 @@
 }
 
 .profile-popup_show {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  /* display: block; */
 }
 
 .add-popup {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .add-popup__window {
@@ -222,7 +234,13 @@
   justify-items: center;
 }
 
-.add-popup__window_form-subtitle {
+.add-popup__window_form-title {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.add-popup__window_form-link {
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -241,7 +259,9 @@
 }
 
 .add-popup_show {
-  display: block;
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
 }
 
 @media screen and (max-width: 720px) {
