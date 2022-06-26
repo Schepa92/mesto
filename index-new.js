@@ -27,11 +27,14 @@ const initialCards = [
 
 /////////////////////////////////////////////////////////////////////////////////////
 
+const elementsBlock = document.querySelector('.elements');
 const profileButton = document.querySelector('.edit-button');
 const profilePopup = document.querySelector('.profile-popup');
 const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
 const picPopup = document.querySelector('.pic-popup');
+
+// ОБЪЯВЛЯЕМ ФУНКЦИИ ОТКРЫТИЯ POPUP'S
 
 function showProfilePopup() {
   profilePopup.classList.add('popup_show');
@@ -50,7 +53,20 @@ function showPicPopup() {
 profileButton.addEventListener('click', showProfilePopup);
 addButton.addEventListener('click', showAddPopup);
 
+// ВЫЗОВ PIC-POPUP ПО КЛИКУ НА ИЗОБРАЖЕНИЕ
+
+elementsBlock.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__image')) {
+    let imageSource = evt.target.getAttribute('src');
+    picPopup
+      .querySelector('.pic-popup__image')
+      .setAttribute('src', imageSource);
+    showPicPopup();
+  }
+});
+
 /////////////////////////////////////////////////////////////////////////////////////
+// ОБЪЯВЛЯЕМ ФУНКЦИИ ЗАКРЫТИЯ POPUP'S
 
 function closePopup() {
   profilePopup.classList.remove('popup_show');
@@ -58,19 +74,14 @@ function closePopup() {
   picPopup.classList.remove('popup_show');
 }
 
-function closeThisPopup(evt) {
+document.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup__close-icon')) {
-    const index = [...document.querySelectorAll('.popup__close-icon')].indexOf(
-      evt.target
-    );
-    const countClose = document.querySelectorAll('.popup__close-icon')[index];
     closePopup();
   }
-}
-
-document.addEventListener('click', closeThisPopup);
+});
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ЗАСТАВЛЯЕМ РАБОТАТЬ ОКНО РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
 const submitProfileButton = profilePopup.querySelector(
   '.profile-popup__window_submit'
@@ -103,6 +114,7 @@ function setAuthorInfo() {
 submitProfileButton.addEventListener('click', setAuthorInfo);
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ЗАСТАВЛЯЕМ РАБОТАТЬ ОКНО ДОБАВЛЕНИЯ ПУБЛИКАЦИИ
 
 const submitAddButton = document.querySelector('.add-popup__window_submit');
 const elementTitleInput = document.querySelector(
@@ -137,8 +149,7 @@ function addItemElement() {
 submitAddButton.addEventListener('click', addItemElement);
 
 /////////////////////////////////////////////////////////////////////////////////////
-
-const elementsBlock = document.querySelector('.elements');
+// ФУНКЦИЯ СОЗДАНИЯ ЭЛЕМЕНТА
 
 const initialCardsElement = [];
 
@@ -182,6 +193,7 @@ function addElementStartPage() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ФУНКЦИЯ УДАЛЕНИЯ ЭЛЕМЕНТА
 
 function deleteItemElement() {}
 
@@ -190,45 +202,20 @@ elementsBlock.addEventListener('click', (evt) => {
     const index = [
       ...elementsBlock.querySelectorAll('.element__trash-icon'),
     ].indexOf(evt.target);
-    console.log(index);
-    console.log(initialCardsElement);
     initialCardsElement[index].remove();
     initialCardsElement.splice(index, 1);
   }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ЛАЙКИ
 
 elementsBlock.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('element__footer_like')) {
-    const index = [
-      ...elementsBlock.querySelectorAll('.element__footer_like'),
-    ].indexOf(evt.target);
-    const countLike = elementsBlock.querySelectorAll('.element__footer_like')[
-      index
-    ];
-    countLike.classList.toggle('element__footer_like-on');
+    evt.target.classList.toggle('element__footer_like-on');
   }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
-
-elementsBlock.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('element__image')) {
-    console.log(evt.target);
-    const index = [
-      ...elementsBlock.querySelectorAll('.element__image'),
-    ].indexOf(evt.target);
-    const countFull = elementsBlock.querySelectorAll('.element__image')[index];
-
-    console.log(countFull);
-    let imageSource = countFull.getAttribute('src');
-    console.log(imageSource);
-    picPopup
-      .querySelector('.pic-popup__image')
-      .setAttribute('src', imageSource);
-    showPicPopup();
-  }
-});
-
+// ВЫЗОВ ФУНКЦИИ НАЧАЛЬНОЙ ОТРИСОВКИ ЭЛЕМЕНТОВ
 addElementStartPage();
