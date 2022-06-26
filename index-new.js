@@ -215,17 +215,20 @@ elementsBlock.addEventListener('click', (evt) => {
 
 elementsBlock.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('element__image')) {
+    console.log(evt.target);
     const index = [
       ...elementsBlock.querySelectorAll('.element__image'),
     ].indexOf(evt.target);
     const countFull = elementsBlock.querySelectorAll('.element__image')[index];
 
+    console.log(countFull);
     let imageSource = countFull.getAttribute('src');
+    console.log(imageSource);
     picPopup
       .querySelector('.pic-popup__image')
       .setAttribute('src', imageSource);
+    showPicPopup();
   }
-  showPicPopup();
 });
 
 addElementStartPage();
