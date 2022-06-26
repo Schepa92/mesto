@@ -27,43 +27,61 @@ const initialCards = [
 
 /////////////////////////////////////////////////////////////////////////////////////
 
+const elementsBlock = document.querySelector('.elements');
 const profileButton = document.querySelector('.edit-button');
 const profilePopup = document.querySelector('.profile-popup');
 const addButton = document.querySelector('.add-button');
 const addPopup = document.querySelector('.add-popup');
+const picPopup = document.querySelector('.pic-popup');
+
+// ОБЪЯВЛЯЕМ ФУНКЦИИ ОТКРЫТИЯ POPUP'S
 
 function showProfilePopup() {
-  profilePopup.classList.add('profile-popup_show');
+  profilePopup.classList.add('popup_show');
   authorTitleInput.value = authorTitle.textContent;
   authorSubtitleInput.value = authorSubtitle.textContent;
 }
 
 function showAddPopup() {
-  addPopup.classList.add('add-popup_show');
+  addPopup.classList.add('popup_show');
+}
+
+function showPicPopup() {
+  picPopup.classList.add('popup_show');
 }
 
 profileButton.addEventListener('click', showProfilePopup);
 addButton.addEventListener('click', showAddPopup);
 
-/////////////////////////////////////////////////////////////////////////////////////
+// ВЫЗОВ PIC-POPUP ПО КЛИКУ НА ИЗОБРАЖЕНИЕ
 
-const closeButtonProfilePopup = profilePopup.querySelector(
-  '.profile-popup__window_close'
-);
-const closeButtonAddPopup = addPopup.querySelector('.add-popup__window_close');
-
-function closeProfilePopup() {
-  profilePopup.classList.remove('profile-popup_show');
-}
-
-function closeAddPopup() {
-  addPopup.classList.remove('add-popup_show');
-}
-
-closeButtonProfilePopup.addEventListener('click', closeProfilePopup);
-closeButtonAddPopup.addEventListener('click', closeAddPopup);
+elementsBlock.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__image')) {
+    let imageSource = evt.target.getAttribute('src');
+    picPopup
+      .querySelector('.pic-popup__image')
+      .setAttribute('src', imageSource);
+    showPicPopup();
+  }
+});
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ОБЪЯВЛЯЕМ ФУНКЦИИ ЗАКРЫТИЯ POPUP'S
+
+function closePopup() {
+  profilePopup.classList.remove('popup_show');
+  addPopup.classList.remove('popup_show');
+  picPopup.classList.remove('popup_show');
+}
+
+document.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup__close-icon')) {
+    closePopup();
+  }
+});
+
+/////////////////////////////////////////////////////////////////////////////////////
+// ЗАСТАВЛЯЕМ РАБОТАТЬ ОКНО РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
 const submitProfileButton = profilePopup.querySelector(
   '.profile-popup__window_submit'
@@ -85,7 +103,7 @@ function setAuthorInfo() {
   ) {
     authorTitle.textContent = authorTitleInput.value;
     authorSubtitle.textContent = authorSubtitleInput.value;
-    closeProfilePopup();
+    closePopup();
     authorTitleInput.value = '';
     authorSubtitleInput.value = '';
   } else {
@@ -96,6 +114,7 @@ function setAuthorInfo() {
 submitProfileButton.addEventListener('click', setAuthorInfo);
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ЗАСТАВЛЯЕМ РАБОТАТЬ ОКНО ДОБАВЛЕНИЯ ПУБЛИКАЦИИ
 
 const submitAddButton = document.querySelector('.add-popup__window_submit');
 const elementTitleInput = document.querySelector(
@@ -113,11 +132,15 @@ function addItemElement() {
     elementLinkInput.value.length !== 0
   ) {
     initialCards.unshift(addedArrayElement);
-
+    initialCardsElement.unshift('');
+    console.log(initialCardsElement);
+    console.log(initialCards);
     elementTitleInput.value = '';
     elementLinkInput.value = '';
-    closeAddPopup();
+    closePopup();
     createItemElement(0);
+
+    console.log(initialCardsElement);
   } else {
     alert('Введите информацию!');
   }
@@ -126,8 +149,7 @@ function addItemElement() {
 submitAddButton.addEventListener('click', addItemElement);
 
 /////////////////////////////////////////////////////////////////////////////////////
-
-const elementsBlock = document.querySelector('.elements');
+// ФУНКЦИЯ СОЗДАНИЯ ЭЛЕМЕНТА
 
 const initialCardsElement = [];
 
@@ -141,6 +163,10 @@ function createItemElement(index) {
   elementImage.classList.add('element__image');
   elementImage.setAttribute('src', `${linkImage}`);
 
+  const elementTrash = document.createElement('img');
+  elementTrash.classList.add('element__trash-icon');
+  elementTrash.setAttribute('src', './images/trash.svg');
+
   const elementFooter = document.createElement('div');
   elementFooter.classList.add('element__footer');
 
@@ -153,10 +179,9 @@ function createItemElement(index) {
   elementFooterLike.classList.add('element__footer_like');
 
   elementFooter.append(elementFooterTitle, elementFooterLike);
-  itemElement.append(elementImage, elementFooter);
+  itemElement.append(elementImage, elementTrash, elementFooter);
   elementsBlock.prepend(itemElement);
   initialCardsElement[index] = itemElement;
-  return index;
 }
 
 function addElementStartPage() {
@@ -168,33 +193,29 @@ function addElementStartPage() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ФУНКЦИЯ УДАЛЕНИЯ ЭЛЕМЕНТА
+
+function deleteItemElement() {}
 
 elementsBlock.addEventListener('click', (evt) => {
-  console.log('click!');
-  if (evt.target.classList.contains('element__footer_like')) {
+  if (evt.target.classList.contains('element__trash-icon')) {
     const index = [
-      ...elementsBlock.querySelectorAll('.element__footer_like'),
+      ...elementsBlock.querySelectorAll('.element__trash-icon'),
     ].indexOf(evt.target);
-    const countLike = elementsBlock.querySelectorAll('.element__footer_like')[
-      index
-    ];
-    countLike.classList.toggle('element__footer_like-on');
+    initialCardsElement[index].remove();
+    initialCardsElement.splice(index, 1);
   }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
+// ЛАЙКИ
 
-// elementsBlock.addEventListener('click', (evt) => {
-//   console.log('click!');
-//   if (evt.target.classList.contains('element')) {
-//     const index = [...elementsBlock.querySelectorAll('.element')].indexOf(
-//       evt.target
-//     );
-//     const countLike = elementsBlock.querySelectorAll('.element__footer_like')[
-//       index
-//     ];
-//     countLike.classList.toggle('element__footer_like-on');
-//   }
-// });
+elementsBlock.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__footer_like')) {
+    evt.target.classList.toggle('element__footer_like-on');
+  }
+});
 
+/////////////////////////////////////////////////////////////////////////////////////
+// ВЫЗОВ ФУНКЦИИ НАЧАЛЬНОЙ ОТРИСОВКИ ЭЛЕМЕНТОВ
 addElementStartPage();
