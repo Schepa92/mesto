@@ -75,7 +75,10 @@ function closePopup() {
 }
 
 document.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup__close-icon')) {
+  if (
+    evt.target.classList.contains('popup__close-icon') ||
+    evt.target.classList.contains('opacity-background')
+  ) {
     closePopup();
   }
 });
@@ -97,18 +100,11 @@ const authorSubtitleInput = document.querySelector(
 );
 
 function setAuthorInfo() {
-  if (
-    authorTitleInput.value.length !== 0 &&
-    authorSubtitleInput.value.length !== 0
-  ) {
-    authorTitle.textContent = authorTitleInput.value;
-    authorSubtitle.textContent = authorSubtitleInput.value;
-    closePopup();
-    authorTitleInput.value = '';
-    authorSubtitleInput.value = '';
-  } else {
-    alert('Заполните данные профиля!');
-  }
+  authorTitle.textContent = authorTitleInput.value;
+  authorSubtitle.textContent = authorSubtitleInput.value;
+  closePopup();
+  authorTitleInput.value = '';
+  authorSubtitleInput.value = '';
 }
 
 submitProfileButton.addEventListener('click', setAuthorInfo);
@@ -217,5 +213,6 @@ elementsBlock.addEventListener('click', (evt) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
+
 // ВЫЗОВ ФУНКЦИИ НАЧАЛЬНОЙ ОТРИСОВКИ ЭЛЕМЕНТОВ
 addElementStartPage();

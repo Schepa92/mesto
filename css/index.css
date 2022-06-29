@@ -328,3 +328,16 @@
   visibility: visible;
   opacity: 1;
 }
+
+.popup__button {
+  border: none;
+  box-shadow: 0 0 10px gray;
+}
+
+.popup__button_disabled {
+  box-shadow: 0 0 10px red;
+}
+
+.popup__input_type_error {
+  border: 1px solid red;
+}
