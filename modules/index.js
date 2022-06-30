@@ -106,19 +106,19 @@ addSubmit.addEventListener('click', addItemElement);
 /////////////////////////////////////////////////////////////////////////////////////
 // ФУНКЦИЯ УДАЛЕНИЯ ЭЛЕМЕНТА
 
-elementsBlock.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('element__trash-icon')) {
-    console.log(evt.target);
-    const index = [
-      ...elementsBlock.querySelectorAll('.element__trash-icon'),
-    ].indexOf(evt.target);
-    initialCards.splice(index, 1);
+// elementsBlock.addEventListener('click', (evt) => {
+//   if (evt.target.classList.contains('element__trash-icon')) {
+//     console.log(evt.target);
+//     const index = [
+//       ...elementsBlock.querySelectorAll('.element__trash-icon'),
+//     ].indexOf(evt.target);
+//     initialCards.splice(index, 1);
 
-    // let del = document.querySelector(`elements div:nth-child(${index})`);
+//     // let del = document.querySelector(`elements div:nth-child(${index})`);
 
-    console.log(evt.currentTarget.querySelectorAll('element'));
-  }
-});
+//     console.log(evt.currentTarget.querySelectorAll('element'));
+//   }
+// });
 
 /////////////////////////////////////////////////////////////////////////////////////
 // ЛАЙКИ

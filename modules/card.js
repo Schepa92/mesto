@@ -45,9 +45,11 @@ export class Card {
     this._element.querySelector('.element__image').src = this._link;
     this._element.querySelector('.element__footer_title').textContent =
       this._name;
-    this._element.addEventListener('click', (evt) => {
-      console.log(evt);
-    });
+    this._element
+      .querySelector('.element__trash-icon')
+      .addEventListener('click', () => {
+        console.log('Need delete!!!!!'); // ПИЗДЕЦ
+      });
     return this._element;
   }
 }
