@@ -63,7 +63,6 @@ document.addEventListener('click', (evt) => {
 const profilePopupForm = document.forms.profilePopup__form;
 const author = profilePopupForm.elements.author;
 const aboutAuthor = profilePopupForm.elements.aboutAuthor;
-const saveSubmit = profilePopupForm.elements.save;
 
 const authorTitle = document.querySelector('.profile__info_author-text');
 const aboutAuthorSubtitle = document.querySelector(
@@ -73,12 +72,14 @@ const aboutAuthorSubtitle = document.querySelector(
 function setAuthorInfo() {
   authorTitle.textContent = author.value;
   aboutAuthorSubtitle.textContent = aboutAuthor.value;
-  author.value = '';
-  aboutAuthor.value = '';
-  closePopup();
 }
 
-saveSubmit.addEventListener('click', setAuthorInfo);
+profilePopupForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  setAuthorInfo();
+  closePopup();
+  profilePopupForm.reset();
+});
 
 /////////////////////////////////////////////////////////////////////////////////////
 // ЗАСТАВЛЯЕМ РАБОТАТЬ ОКНО ДОБАВЛЕНИЯ ПУБЛИКАЦИИ
@@ -86,22 +87,23 @@ saveSubmit.addEventListener('click', setAuthorInfo);
 const addPopupForm = document.forms.addPopup__form;
 const title = addPopupForm.elements.title;
 const link = addPopupForm.elements.link;
-const addSubmit = addPopupForm.elements.add;
 
 function addItemElement() {
   if (title.value.length !== 0 && link.value.length !== 0) {
     const card = new Card(`${title.value}`, `${link.value}`);
     const cardElement = card.generateCard();
     document.querySelector('.elements').prepend(cardElement);
-    title.value = '';
-    link.value = '';
-    closePopup();
   } else {
     alert('Введите информацию!');
   }
 }
 
-addSubmit.addEventListener('click', addItemElement);
+addPopupForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  addItemElement();
+  closePopup();
+  addPopupForm.reset();
+});
 
 /////////////////////////////////////////////////////////////////////////////////////
 // ФУНКЦИЯ УДАЛЕНИЯ ЭЛЕМЕНТА
